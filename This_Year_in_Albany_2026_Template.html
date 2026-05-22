@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>This Year in Albany 2026 — Magazine Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1F3C;
+    --navy-mid: #1A3560;
+    --gold: #C8963E;
+    --gold-light: #E8B55A;
+    --red: #B92B27;
+    --white: #FFFFFF;
+    --off-white: #F5F3EE;
+    --light-gray: #E8E4DC;
+    --mid-gray: #9A9690;
+    --text-dark: #1A1A1A;
+    --text-body: #2D2D2D;
+    --green: #2A7A4B;
+    --green-light: #3DA065;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #CCC;
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── PAGE SHELL ── */
+  .page {
+    width: 816px; /* 8.5in at 96dpi */
+    min-height: 1056px; /* 11in at 96dpi */
+    background: var(--white);
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,.35);
+    page-break-after: always;
+  }
+
+  /* ── SHARED UTILITIES ── */
+  .csea-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .csea-logo span { display: block; font-size: 11px; font-weight: 600; letter-spacing: 3px; color: var(--navy-mid); }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 32px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    justify-content: space-between;
+  }
+  .page-footer .pg-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: rgba(255,255,255,.55);
+    letter-spacing: 1px;
+  }
+
+  .rule { width: 100%; height: 2px; background: var(--light-gray); }
+  .rule-gold { width: 48px; height: 3px; background: var(--gold); }
+
+  .h-section {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 6px;
+    display: inline-block;
+  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .bullet-list { list-style: none; }
+  .bullet-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-body);
+  }
+  .bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 14px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .bullet-list li.sub { padding-left: 38px; }
+  .bullet-list li.sub::before { width: 5px; height: 5px; left: 18px; background: var(--navy-mid); }
+
+  .img-placeholder {
+    background: var(--light-gray);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--mid-gray);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 2px dashed #BEB9B0;
+  }
+  .img-placeholder svg { opacity: .4; }
+
+  /* ──────────────────────────────────────────────
+     PAGE 1 — COVER
+  ────────────────────────────────────────────── */
+  #cover {
+    background: var(--navy);
+    min-height: 1056px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-photo-zone {
+    flex: 1;
+    position: relative;
+    background: linear-gradient(160deg, #1A3560 0%, #0D1F3C 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 700px;
+  }
+  .cover-photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,.18);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 13px;
+    letter-spacing: 3px; text-transform: uppercase;
+    border: 3px dashed rgba(255,255,255,.12);
+    margin: 32px;
+    border-radius: 4px;
+  }
+  .cover-headline-block {
+    position: absolute;
+    top: 40px; left: 48px; right: 48px;
+  }
+  .cover-headline-block .year-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 13px;
+    letter-spacing: 5px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 12px;
+    display: block;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 92px;
+    line-height: .88;
+    color: var(--white);
+    text-shadow: 0 4px 32px rgba(0,0,0,.5);
+  }
+  .cover-title .highlight { color: var(--gold); }
+  .cover-bottom {
+    background: var(--white);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%);
+    padding-top: 48px;
+  }
+  .cover-tagline {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: var(--mid-gray);
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+
+  /* ──────────────────────────────────────────────
+     PAGE 2 — TABLE OF CONTENTS
+  ────────────────────────────────────────────── */
+  #toc { padding: 0; }
+  .toc-header {
+    background: var(--navy);
+    padding: 40px 48px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .toc-main-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--white);
+  }
+  .toc-body { padding: 40px 48px; }
+  .toc-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+  .toc-photo { height: 240px; }
+  .toc-entries { }
+  .toc-entry {
+    display: flex;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--light-gray);
+    gap: 12px;
+  }
+  .toc-entry:last-child { border-bottom: none; }
+  .toc-entry-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--gold);
+    min-width: 56px;
+    line-height: 1;
+  }
+  .toc-entry-info { flex: 1; }
+  .toc-entry-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .toc-entry-desc {
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-top: 2px;
+  }
+  .toc-entry-pg {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--navy);
+    min-width: 32px;
+    text-align: right;
+  }
+
+  /* ──────────────────────────────────────────────
+     PAGE 3 — PRESIDENT MESSAGE
+  ────────────────────────────────────────────── */
+  #president { padding: 0; }
+  .president-header {
+    background: var(--off-white);
+    padding: 36px 48px 28px;
+    border-bottom: 4px solid var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .president-body { padding: 36px 48px; display: grid; grid-template-columns: 1fr auto; gap: 40px; }
+  .president-text p { font-size: 14px; line-height: 1.7; color: var(--text-body); margin-bottom: 16px; }
+  .president-salutation {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    margin-top: 8px;
+  }
+  .president-sig {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    margin: 8px 0 4px;
+  }
+  .president-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .president-photo { width: 220px; }
+  .president-photo .img-placeholder { height: 260px; border-radius: 4px; }
+  .pullquote {
+    border-left: 4px solid var(--gold);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: var(--off-white);
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.5;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ──────────────────────────────────────────────
+     PAGE 4 — BUDGET OVERVIEW
+  ────────────────────────────────────────────── */
+  .section-cover {
+    min-height: 1056px;
+    display: flex;
+    flex-direction: column;
+  }
+  .section-cover-band {
+    background: var(--navy);
+    padding: 52px 48px 48px;
+    flex: 0 0 auto;
+  }
+  .section-cover-band .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 12px;
+    letter-spacing: 5px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .section-cover-band h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 54px;
+    color: var(--white); line-height: .95;
+  }
+  .section-cover-band h2 em { color: var(--gold); font-style: normal; }
+  .section-cover-band .intro {
+    font-size: 15px; color: rgba(255,255,255,.75);
+    margin-top: 20px; max-width: 560px; line-height: 1.6;
+  }
+  .section-cover-photo { flex: 1; min-height: 400px; }
+  .section-cover-photo .img-placeholder { height: 100%; border-radius: 0; border: none; }
+
+  /* Budget stat cards */
+  .stat-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 36px 48px; }
+  .stat-card {
+    background: var(--navy);
+    padding: 24px 20px;
+    border-radius: 6px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold);
+  }
+  .stat-card .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-card .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,.7);
+    font-weight: 500;
+    letter-spacing: .5px;
+    line-height: 1.4;
+  }
+
+  /* Content pages */
+  .content-page { padding: 40px 48px 52px; }
+  .content-page .page-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  /* ──────────────────────────────────────────────
+     SUBSECTION PAGES (Budget subsections)
+  ────────────────────────────────────────────── */
+  .sub-section { margin-bottom: 32px; }
+  .sub-section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--light-gray);
+  }
+  .sub-icon {
+    width: 36px; height: 36px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .sub-icon svg { fill: var(--gold); width: 18px; height: 18px; }
+  .sub-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  /* ──────────────────────────────────────────────
+     LEGISLATIVE SESSION PAGES
+  ────────────────────────────────────────────── */
+  .leg-intro { background: var(--off-white); padding: 28px 32px; border-left: 5px solid var(--navy); margin-bottom: 28px; font-size: 14px; line-height: 1.65; }
+  .bill-card {
+    background: var(--off-white);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--green);
+    position: relative;
+  }
+  .bill-card.opposed { border-left-color: var(--red); }
+  .bill-card .bill-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .bill-card.opposed .bill-tag { color: var(--red); }
+  .bill-card .bill-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--mid-gray);
+    margin-bottom: 4px;
+  }
+  .bill-card .bill-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .bill-card p { font-size: 12.5px; line-height: 1.5; color: var(--text-body); }
+
+  /* ──────────────────────────────────────────────
+     FEDERAL ISSUES
+  ────────────────────────────────────────────── */
+  .fed-cover { background: var(--red); }
+  .fed-cover .section-cover-band { background: var(--red); }
+  .fed-cover .section-cover-band h2 { color: var(--white); }
+  .fed-cover .section-cover-band .label { color: rgba(255,255,255,.6); }
+  .fed-cover .section-cover-band em { color: #FFD0CE; }
+  .fed-cover .section-cover-band .intro { color: rgba(255,255,255,.75); }
+
+  .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--navy); }
+  .impact-cell {
+    background: var(--navy);
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .impact-cell .impact-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .impact-cell .impact-label {
+    font-size: 12px;
+    color: rgba(255,255,255,.7);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .fought-back-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .fought-back-item:last-child { border-bottom: none; }
+  .check-icon {
+    width: 32px; height: 32px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .check-icon::after {
+    content: '✓';
+    color: white;
+    font-weight: 900;
+    font-size: 16px;
+  }
+  .fought-back-item .fb-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .fought-back-item .fb-text strong { color: var(--green); }
+
+  /* ──────────────────────────────────────────────
+     HOW TO GET INVOLVED
+  ────────────────────────────────────────────── */
+  .involve-card {
+    background: var(--navy);
+    border-radius: 8px;
+    padding: 28px 28px;
+    margin-bottom: 20px;
+  }
+  .involve-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .involve-card p { font-size: 13.5px; color: rgba(255,255,255,.8); line-height: 1.6; }
+  .involve-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 3px;
+    margin-top: 12px;
+    text-decoration: none;
+  }
+
+  .qr-placeholder {
+    width: 120px; height: 120px;
+    border: 2px dashed var(--mid-gray);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--mid-gray); text-align: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ──────────────────────────────────────────────
+     BACK COVER
+  ────────────────────────────────────────────── */
+  #back-cover {
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 1056px;
+    text-align: center;
+    padding: 80px 48px;
+  }
+  .back-divider { width: 64px; height: 3px; background: var(--gold); margin: 24px auto; }
+  .back-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    max-width: 460px;
+    line-height: 1.4;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .back-url {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .back-social {
+    display: flex; gap: 20px; justify-content: center; margin-top: 24px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: 2px; color: rgba(255,255,255,.5);
+    text-transform: uppercase;
+  }
+  .back-cover-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 72px;
+    color: var(--white); letter-spacing: -2px;
+    line-height: 1;
+  }
+  .back-cover-logo span { color: var(--gold); }
+
+  /* ──────────────────────────────────────────────
+     PRINT GUIDE BAR
+  ────────────────────────────────────────────── */
+  .canva-guide {
+    width: 816px; margin: 0 auto 8px; background: #222;
+    padding: 10px 20px; border-radius: 4px 4px 0 0;
+    font-family: 'Barlow', sans-serif; font-size: 12px;
+    color: rgba(255,255,255,.6);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .canva-guide strong { color: var(--gold-light); }
+
+  @media print {
+    body { background: white; }
+    .canva-guide { display: none; }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── CANVA GUIDE BAR (shown in browser, hidden in print) ─── -->
+<div class="canva-guide" style="margin-top:40px">
+  <span>📋 <strong>Canva Import Guide:</strong> Each "page" below = one slide/page in Canva (8.5 × 11 in, letter). Add via <strong>File → Import</strong> or recreate using this layout as your visual brief.</span>
+  <span style="color:#888">34 pages total</span>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 1 — COVER
+═══════════════════════════════════════ -->
+<div class="page" id="cover">
+  <div class="cover-photo-zone">
+    <div class="cover-photo-placeholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      REPLACE WITH PHOTO<br>NY State Capitol or Albany Skyline<br>(Recommended: full bleed, landscape)
+    </div>
+    <div class="cover-headline-block">
+      <span class="year-tag">Annual Legislative Report</span>
+      <div class="cover-title">
+        This<br>Year<br>In<br><span class="highlight">Albany</span><br>2026
+      </div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+      <div class="cover-tagline" style="margin-top:6px">Civil Service Employees Association · AFSCME Local 1000</div>
+    </div>
+    <div style="text-align:right">
+      <div class="section-label">INSIDE THIS ISSUE</div>
+      <div style="font-size:12px; color:var(--mid-gray); margin-top:4px">Budget · Legislature · Federal Issues · Action</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 2 — TABLE OF CONTENTS
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 2 — Table of Contents</strong></div>
+<div class="page" id="toc">
+  <div class="toc-header">
+    <div>
+      <div class="section-label" style="color:var(--gold-light)">This Year in Albany 2026</div>
+      <div class="toc-main-title">Table of Contents</div>
+    </div>
+    <div class="csea-logo" style="color:white">CSEA <span style="color:rgba(255,255,255,.5)">NEW YORK</span></div>
+  </div>
+  <div class="toc-body">
+    <div class="toc-photos">
+      <div class="toc-photo img-placeholder">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        PHOTO PLACEHOLDER<br>Albany / Capitol
+      </div>
+      <div class="toc-photo img-placeholder">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        PHOTO PLACEHOLDER<br>Members / Rally
+      </div>
+    </div>
+    <div class="toc-entries">
+      <div class="toc-entry">
+        <div class="toc-entry-num">01</div>
+        <div class="toc-entry-info">
+          <div class="toc-entry-title">A Message from the President</div>
+          <div class="toc-entry-desc">A note on 2026's victories and the road ahead</div>
+        </div>
+        <div class="toc-entry-pg">02</div>
+      </div>
+      <div class="toc-entry">
+        <div class="toc-entry-num">02</div>
+        <div class="toc-entry-info">
+          <div class="toc-entry-title">The New York State Budget</div>
+          <div class="toc-entry-desc">FY2027 highlights: state operations, education, healthcare &amp; more</div>
+        </div>
+        <div class="toc-entry-pg">03</div>
+      </div>
+      <div class="toc-entry">
+        <div class="toc-entry-num">03</div>
+        <div class="toc-entry-info">
+          <div class="toc-entry-title">Legislative Session</div>
+          <div class="toc-entry-desc">Bills supported, bills opposed, and outcomes that matter</div>
+        </div>
+        <div class="toc-entry-pg">11</div>
+      </div>
+      <div class="toc-entry">
+        <div class="toc-entry-num">04</div>
+        <div class="toc-entry-info">
+          <div class="toc-entry-title">Federal Issues</div>
+          <div class="toc-entry-desc">Ongoing federal threats and CSEA's response</div>
+        </div>
+        <div class="toc-entry-pg">27</div>
+      </div>
+      <div class="toc-entry">
+        <div class="toc-entry-num">05</div>
+        <div class="toc-entry-info">
+          <div class="toc-entry-title">How to Get Involved</div>
+          <div class="toc-entry-desc">Become a CSEA Federal Advocate · Join the PEOPLE Program</div>
+        </div>
+        <div class="toc-entry-pg">31</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">01</div><div class="csea-logo" style="color:white;font-size:14px">CSEA <span style="color:rgba(255,255,255,.4)">NEW YORK</span></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 3 — PRESIDENT MESSAGE
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 3 — Message from the President</strong></div>
+<div class="page" id="president">
+  <div class="president-header">
+    <div>
+      <div class="section-label">Leadership</div>
+      <div class="h-section" style="font-size:26px;border-color:var(--navy)">A Message from the President</div>
+    </div>
+    <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+  </div>
+  <div class="president-body">
+    <div class="president-text">
+      <p style="margin-top:4px"><em style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--navy)">CSEA Family,</em></p>
+      <p>[REPLACE WITH PRESIDENT'S MESSAGE — Opening paragraph acknowledging the year's work and achievements in Albany. Mention 2-3 key legislative wins that CSEA secured for members in 2026.]</p>
+      <div class="pullquote">"[INSERT MEMORABLE PULLQUOTE — a powerful sentence from the message that captures the spirit of 2026.]"</div>
+      <p>[REPLACE — Second paragraph covering the most significant challenges CSEA faced, whether federal, budgetary, or legislative, and how the union responded.]</p>
+      <p>[REPLACE — Closing paragraph expressing gratitude for member activism and looking forward to continued efforts. Inspirational, forward-looking tone.]</p>
+      <p class="president-salutation">In Solidarity,</p>
+      <div class="president-sig">[President's Signature]</div>
+      <div class="president-name">[PRESIDENT NAME]</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;color:var(--mid-gray);text-transform:uppercase">President</div>
+    </div>
+    <div class="president-photo">
+      <div class="img-placeholder" style="height:280px;width:220px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        PRESIDENT<br>PHOTO
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">02</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 4 — BUDGET SECTION COVER
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 4 — Budget Section Opener</strong></div>
+<div class="page section-cover" id="budget-cover">
+  <div class="section-cover-band">
+    <div class="label">Section One</div>
+    <h2>The New York<br>State <em>Budget</em></h2>
+    <p class="intro">[REPLACE — 2-3 sentence overview of the FY2027 budget. State the total budget amount, CSEA's overall assessment (positive/challenging), and 2-3 headline wins to set up the pages that follow.]</p>
+  </div>
+  <div class="section-cover-photo">
+    <div class="img-placeholder" style="height:100%;min-height:380px;border-radius:0;border:none;background:linear-gradient(135deg,#1A3560,#0D1F3C)">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="color:rgba(255,255,255,.3)">FULL BLEED PHOTO<br>Albany Capitol / Legislative Session</span>
+    </div>
+  </div>
+  <div class="stat-cards" style="padding:0 48px 52px;background:var(--white)">
+    <div class="stat-card">
+      <div class="stat-num">$[XXX]B</div>
+      <div class="stat-label">Total FY2027 State Budget</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">[X]</div>
+      <div class="stat-label">Key CSEA Priorities Secured</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">$[X]B</div>
+      <div class="stat-label">New Funding for Public Services</div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">03</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 5 — STATE OPERATIONS
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 5 — Budget: State Operations & Civil Service</strong></div>
+<div class="page" id="budget-state-ops">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div class="section-label">Budget · State Operations</div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div class="sub-title">Civil Service</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Key civil service provision from the budget. E.g., exam fee waivers, hiring reforms, lag pay changes.]</li>
+            <li>[REPLACE — Second civil service item.]</li>
+            <li class="sub">[REPLACE — Sub-point with additional detail.]</li>
+            <li>[REPLACE — Third civil service item.]</li>
+          </ul>
+        </div>
+        <div class="sub-section" style="margin-top:24px">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="sub-title">State University of New York</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — SUNY budget item, e.g., hospital capital funding, operating aid.]</li>
+            <li>[REPLACE — Second SUNY item.]</li>
+            <li>[REPLACE — Third SUNY item, e.g., operating aid increase.]</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div class="sub-title">OMH &amp; OPWDD</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Mental health / developmental disabilities funding item.]</li>
+            <li>[REPLACE — Staffing or direct care item.]</li>
+            <li>[REPLACE — Capital investment at a specific facility.]</li>
+            <li class="sub">[REPLACE — Sub-detail.]</li>
+          </ul>
+        </div>
+        <div class="sub-section" style="margin-top:24px">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 21H3"/></svg></div>
+            <div class="sub-title">Transportation Agencies</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — DOT / Thruway budget item, e.g., work zone camera program, infrastructure funding.]</li>
+            <li class="sub">[REPLACE — Sub-point.]</li>
+            <li>[REPLACE — Second transportation item.]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">04</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 6 — DOCCS & OTHER AGENCIES
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 6 — Budget: DOCCS & Other Agencies</strong></div>
+<div class="page" id="budget-doccs">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div class="section-label">Budget · State Agencies</div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div class="sub-title">DOCCS</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Corrections budget item, e.g., facility closures, camera program, staffing.]</li>
+            <li>[REPLACE — Second DOCCS item.]</li>
+            <li class="sub">[REPLACE — Sub-detail.]</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div class="sub-title">Other State Agencies</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Notable state agency funding item, e.g., State Museum renovation, State Parks.]</li>
+            <li>[REPLACE — Second agency item.]</li>
+            <li>[REPLACE — Third agency item, e.g., DMNA firefighters.]</li>
+            <li>[REPLACE — Fourth agency item, e.g., State Fairgrounds.]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:32px;background:var(--off-white);border-radius:6px;padding:24px 28px;display:flex;gap:24px;align-items:flex-start">
+      <div class="img-placeholder" style="width:200px;height:160px;flex-shrink:0;border-radius:50%;overflow:hidden">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        MEMBER PHOTO<br>(Circular crop)
+      </div>
+      <div>
+        <div class="sub-title" style="margin-bottom:8px;font-size:14px">MEMBER SPOTLIGHT</div>
+        <p style="font-size:13px;color:var(--text-body);line-height:1.6">[REPLACE — Optional member story or quote related to this section. E.g., a DOCCS employee commenting on body camera policy, or a state parks worker on capital investment.]</p>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;color:var(--mid-gray);margin-top:8px;text-transform:uppercase">[MEMBER NAME, TITLE, LOCAL]</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">05</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 7 — LOCAL GOVERNMENTS
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 7 — Budget: Local Governments</strong></div>
+<div class="page" id="budget-local">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div class="section-label">Budget · Local Governments</div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+            <div class="sub-title">Funding</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Municipal assistance funding item.]</li>
+            <li>[REPLACE — City or county specific funding item.]</li>
+            <li>[REPLACE — Clean water / infrastructure item.]</li>
+            <li>[REPLACE — Housing-related funding item.]</li>
+          </ul>
+        </div>
+        <div class="sub-section" style="margin-top:24px">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div class="sub-title">Community Colleges</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Community college funding item, e.g., operating aid, free tuition programs.]</li>
+            <li>[REPLACE — Second community college item.]</li>
+            <li class="sub">[REPLACE — Sub-detail on eligible programs or industries.]</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="sub-section">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div class="sub-title">Education</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Total school aid figure and increase over prior year.]</li>
+            <li>[REPLACE — Nutrition or school program item.]</li>
+            <li>[REPLACE — Retirement earnings cap or pension-related item for school employees.]</li>
+            <li>[REPLACE — Another education policy item.]</li>
+            <li class="sub">[REPLACE — Sub-detail, e.g., CSEA-secured consultation requirement.]</li>
+          </ul>
+        </div>
+        <div class="sub-section" style="margin-top:24px">
+          <div class="sub-section-header">
+            <div class="sub-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg></div>
+            <div class="sub-title">Libraries</div>
+          </div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Library operating aid figure.]</li>
+            <li>[REPLACE — Library capital funding item.]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">06</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 8 — HEALTHCARE
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 8 — Budget: Healthcare</strong></div>
+<div class="page" id="budget-healthcare">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div class="section-label">Budget · Healthcare</div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <ul class="bullet-list">
+          <li>[REPLACE — Medicaid funding increase for hospitals and nursing homes.]</li>
+          <li>[REPLACE — Health Care Facility Transformation Program funding item.]</li>
+          <li>[REPLACE — Cancer center or specialty hospital funding item.]</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="bullet-list">
+          <li>[REPLACE — Hospital oversight or reform item, e.g., NUMC or safety-net changes.]</li>
+          <li class="sub">[REPLACE — Sub-point.]</li>
+          <li class="sub">[REPLACE — Sub-point.]</li>
+          <li>[REPLACE — Another healthcare funding or policy item.]</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:28px">
+      <div class="rule"></div>
+    </div>
+    <div style="margin-top:28px">
+      <div class="h-section">Child Care</div>
+      <div class="two-col" style="margin-top:16px">
+        <div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Child care substitute pool or access item.]</li>
+            <li>[REPLACE — Capital investment in child care facilities.]</li>
+            <li>[REPLACE — State aid total and increase for child care programs.]</li>
+          </ul>
+        </div>
+        <div class="img-placeholder" style="height:180px;border-radius:50%;overflow:hidden">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          MEMBER PHOTO<br>(Circular crop)
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">07</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 9 — REVENUE & OTHER ISSUES
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 9 — Budget: Revenue & Other Issues</strong></div>
+<div class="page" id="budget-revenue">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div class="section-label">Budget · Revenue &amp; Other Issues</div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div class="sub-section">
+      <div class="sub-section-header">
+        <div class="sub-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="sub-title">Revenue</div>
+      </div>
+      <div class="two-col">
+        <ul class="bullet-list">
+          <li>[REPLACE — Income tax surcharge or extension item.]</li>
+          <li>[REPLACE — Tax reduction or relief item for New Yorkers.]</li>
+          <li>[REPLACE — Inflation refund or rebate item.]</li>
+        </ul>
+        <ul class="bullet-list">
+          <li>[REPLACE — Child Tax Credit or family benefit item.]</li>
+          <li class="sub">[REPLACE — Eligibility details.]</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rule" style="margin:24px 0"></div>
+    <div class="sub-section">
+      <div class="sub-section-header">
+        <div class="sub-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="sub-title">Other Issues</div>
+      </div>
+      <div class="two-col">
+        <ul class="bullet-list">
+          <li>[REPLACE — Unemployment Insurance Trust Fund item.]</li>
+          <li class="sub">[REPLACE — Savings to employers sub-point.]</li>
+          <li class="sub">[REPLACE — UI benefit increase sub-point.]</li>
+        </ul>
+        <div>
+          <ul class="bullet-list">
+            <li>[REPLACE — Striking workers / UI eligibility item.]</li>
+          </ul>
+          <div class="img-placeholder" style="height:160px;border-radius:50%;overflow:hidden;margin-top:16px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            MEMBER PHOTO<br>(Circular)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">08</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 10 — LEGISLATIVE SESSION COVER
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 10 — Legislative Session Section Opener</strong></div>
+<div class="page section-cover" id="leg-cover">
+  <div class="section-cover-band" style="background:var(--navy-mid)">
+    <div class="label">Section Two</div>
+    <h2>Legislative<br><em>Session</em></h2>
+    <p class="intro">[REPLACE — 2-3 sentence overview of the 2026 legislative session. Characterize it broadly — active, contentious, productive? Mention CSEA's overall wins and note any significant bills that were successfully opposed.]</p>
+  </div>
+  <div class="section-cover-photo">
+    <div class="img-placeholder" style="height:100%;min-height:380px;border-radius:0;border:none;background:linear-gradient(135deg,#1A3560,#243D6A)">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="color:rgba(255,255,255,.3)">PHOTO — CSEA Members in Albany<br>or Legislative Hearing</span>
+    </div>
+  </div>
+  <div style="padding:0 48px 52px;background:white">
+    <div class="leg-intro" style="margin-top:28px">
+      [REPLACE — Brief framing sentence about CSEA's legislative priorities going into session and the overall outcome. 2-3 sentences that set up the bill-by-bill pages that follow.]
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">09</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGES 11–16 — BILLS SUPPORTED (6 pages)
+     Template repeated 6x with different categories
+═══════════════════════════════════════ -->
+
+<!-- Bills Supported Page 1 -->
+<div class="canva-guide"><strong>Page 11 — Bills Supported (Workforce / Civil Service)</strong></div>
+<div class="page" id="bills-1">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div>
+        <div class="section-label">Legislative Session</div>
+        <div class="h-section">Bills Supported — Workforce &amp; Civil Service</div>
+      </div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+
+    <div class="bill-card">
+      <div class="bill-tag">✓ CSEA Position: Support</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE — e.g., Public Employee Workplace Safety Act]</div>
+      <p>[REPLACE — 2-3 sentence description of what this bill does and why CSEA supported it. Note the outcome: passed/signed/vetoed.]</p>
+    </div>
+
+    <div class="bill-card">
+      <div class="bill-tag">✓ CSEA Position: Support</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE — e.g., Civil Service Modernization Act]</div>
+      <p>[REPLACE — 2-3 sentence description of what this bill does and why CSEA supported it. Note the outcome.]</p>
+    </div>
+
+    <div class="bill-card">
+      <div class="bill-tag">✓ CSEA Position: Support</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE — e.g., Expanded Workers' Compensation Coverage]</div>
+      <p>[REPLACE — 2-3 sentence description of what this bill does and why CSEA supported it. Note the outcome.]</p>
+    </div>
+
+    <div class="bill-card">
+      <div class="bill-tag">✓ CSEA Position: Support</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE — e.g., Public Employee AI Protections]</div>
+      <p>[REPLACE — 2-3 sentence description. Note outcome.]</p>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">10</div><div></div></div>
+</div>
+
+<!-- Bills Supported Page 2 — Healthcare / Benefits -->
+<div class="canva-guide"><strong>Page 12 — Bills Supported (Healthcare / Benefits)</strong></div>
+<div class="page" id="bills-2">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div>
+        <div class="section-label">Legislative Session</div>
+        <div class="h-section">Bills Supported — Healthcare &amp; Benefits</div>
+      </div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div class="bill-card">
+      <div class="bill-tag">✓ CSEA Position: Support</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE]</div>
+      <p>[REPLACE — Bill description and outcome.]</p>
+    </div>
+    <div class="bill-card">
+      <div class="bill-tag">✓ CSEA Position: Support</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE]</div>
+      <p>[REPLACE — Bill description and outcome.]</p>
+    </div>
+    <div class="bill-card">
+      <div class="bill-tag">✓ CSEA Position: Support</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE]</div>
+      <p>[REPLACE — Bill description and outcome.]</p>
+    </div>
+    <div style="display:flex;gap:20px;margin-top:20px;align-items:flex-start">
+      <div class="img-placeholder" style="width:220px;height:180px;flex-shrink:0;border-radius:50%;overflow:hidden">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        MEMBER<br>PHOTO
+      </div>
+      <div style="background:var(--off-white);border-radius:6px;padding:18px 20px;flex:1">
+        <div class="section-label" style="margin-bottom:6px">Why It Matters</div>
+        <p style="font-size:13px;line-height:1.6;color:var(--text-body)">[REPLACE — Optional callout box explaining the broader significance of this section's bills to members and their families.]</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">11</div><div></div></div>
+</div>
+
+<!-- Bills Supported — Pages 3–6: Add more categories as needed (Retirement, Education, Local Gov, Misc) -->
+<div class="canva-guide"><strong>Pages 13–20 — More Bills Supported (duplicate template above for each category)</strong></div>
+<div class="page" id="bills-template-note">
+  <div style="padding:80px 48px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px">
+    <div style="width:64px;height:64px;background:var(--off-white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px">📄</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;color:var(--navy);text-transform:uppercase;letter-spacing:1px">Additional Bill Pages</div>
+    <div style="max-width:480px;font-size:14px;color:var(--mid-gray);line-height:1.7">
+      <strong style="color:var(--navy)">Pages 13–20</strong> follow the same layout as the two bill pages above. In Canva, duplicate either bill page template and update with new bill categories (e.g., Retirement, Labor Relations, Education, Local Government, Transportation, Environmental).
+      <br><br>Add as many pages as needed for your bill count. Each page holds approximately <strong style="color:var(--navy)">3–4 bills</strong> comfortably.
+    </div>
+    <div style="padding:16px 28px;background:var(--off-white);border-radius:6px;font-size:13px;color:var(--text-body);border-left:4px solid var(--gold)">
+      <strong>Suggested categories:</strong> Retirement &amp; Pensions · Labor Relations · Local Government · Education · Environmental · Transportation · Miscellaneous
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">12–20</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     BILLS SUCCESSFULLY OPPOSED
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 21 — Bills Successfully Opposed</strong></div>
+<div class="page" id="bills-opposed">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div>
+        <div class="section-label">Legislative Session</div>
+        <div class="h-section" style="border-color:var(--red)">Bills Successfully Opposed</div>
+      </div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+
+    <div class="bill-card opposed">
+      <div class="bill-tag">✗ CSEA Position: Oppose</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE — e.g., Privatization of Public Services Act]</div>
+      <p>[REPLACE — 2-3 sentences explaining what this bill would have done, why CSEA opposed it, and the outcome (failed/vetoed/tabled). Note the specific harm it would have caused to members.]</p>
+    </div>
+
+    <div class="bill-card opposed">
+      <div class="bill-tag">✗ CSEA Position: Oppose</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE — e.g., Diminished Pension Calculation Bill]</div>
+      <p>[REPLACE — 2-3 sentences explaining the bill, CSEA's opposition, and outcome.]</p>
+    </div>
+
+    <div class="bill-card opposed">
+      <div class="bill-tag">✗ CSEA Position: Oppose</div>
+      <div class="bill-num">S.XXXX (Sponsor Name) / A.XXXX (Sponsor Name)</div>
+      <div class="bill-name">[BILL TITLE]</div>
+      <p>[REPLACE — Description and outcome.]</p>
+    </div>
+
+    <div style="margin-top:24px;display:flex;align-items:flex-start;gap:20px">
+      <div style="background:var(--navy);border-radius:8px;padding:20px 24px;flex:1">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--gold);text-transform:uppercase;margin-bottom:8px">Why Opposing Matters</div>
+        <p style="font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.6">[REPLACE — Brief explanation of CSEA's legislative strategy: stopping harmful legislation is just as important as passing beneficial bills. Note any bills that are likely to return next session.]</p>
+      </div>
+      <div class="img-placeholder" style="width:180px;height:140px;border-radius:50%;overflow:hidden;flex-shrink:0">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        MEMBER<br>PHOTO
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">21</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 22 — FEDERAL ISSUES COVER
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 22 — Federal Issues Section Opener</strong></div>
+<div class="page section-cover fed-cover" id="federal-cover">
+  <div class="section-cover-band">
+    <div class="label">Section Three</div>
+    <h2>Federal<br><em>Issues</em></h2>
+    <p class="intro">[REPLACE — 2-3 sentences introducing the federal landscape affecting CSEA members in 2026. What are the key federal threats or challenges? How does federal policy connect to New York State workers' jobs and benefits?]</p>
+  </div>
+  <div class="section-cover-photo">
+    <div class="img-placeholder" style="height:100%;min-height:360px;border-radius:0;border:none;background:linear-gradient(135deg,#8B1A17,#B92B27)">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span style="color:rgba(255,255,255,.3)">PHOTO — Rally, Advocacy, or DC Action</span>
+    </div>
+  </div>
+  <div style="padding:0 48px 52px;background:white">
+    <div class="leg-intro" style="margin-top:28px;border-left-color:var(--red)">
+      [REPLACE — Key statistic about federal funding's importance to NY state budget, e.g., "X% of New York's budget comes from federal sources. Federal cuts directly threaten every CSEA-represented position."]
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">22</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 23 — WHAT'S IN THE FEDERAL BUDGET
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 23 — What's in the Federal Budget / Reconciliation Package</strong></div>
+<div class="page" id="federal-budget">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div>
+        <div class="section-label">Federal Issues</div>
+        <div class="h-section">What's in the Federal [Budget / Package]?</div>
+      </div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <ul class="bullet-list">
+          <li>[REPLACE — Major federal cut or policy change item #1, with dollar amount if applicable.]</li>
+          <li>[REPLACE — Item #2, e.g., Medicaid cuts.]</li>
+          <li>[REPLACE — Item #3, e.g., SNAP reductions.]</li>
+          <li class="sub">[REPLACE — Sub-detail on timing or scope.]</li>
+          <li>[REPLACE — Item #4, e.g., changes to Essential Plan eligibility.]</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="bullet-list">
+          <li>[REPLACE — Item #5, e.g., hospital funding cuts.]</li>
+          <li>[REPLACE — Item #6, e.g., work requirements changes.]</li>
+          <li class="sub">[REPLACE — Sub-point.]</li>
+          <li>[REPLACE — Item #7, e.g., cost-shift to states.]</li>
+          <li>[REPLACE — Item #8, e.g., national debt impact.]</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:28px">
+      <div class="section-label" style="margin-bottom:12px">Why Does It Matter for New York?</div>
+      <div class="stat-cards" style="padding:0;gap:12px">
+        <div class="stat-card" style="padding:18px 14px">
+          <div class="stat-num">[XX]%</div>
+          <div class="stat-label">Of NY Budget From Federal Sources</div>
+        </div>
+        <div class="stat-card" style="padding:18px 14px">
+          <div class="stat-num">$[X]B</div>
+          <div class="stat-label">Potential Hit to State Budget</div>
+        </div>
+        <div class="stat-card" style="padding:18px 14px">
+          <div class="stat-num">[X]M</div>
+          <div class="stat-label">New Yorkers Affected by Healthcare Cuts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">23</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 24 — WHAT DOES THIS MEAN FOR NY (Infographic)
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 24 — Federal Impact Infographic (replace stat boxes with 2026 figures)</strong></div>
+<div class="page" id="federal-impact">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div>
+        <div class="section-label">Federal Issues</div>
+        <div class="h-section">What Does This Mean for New York?</div>
+      </div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+
+    <!-- Top banner stat -->
+    <div style="background:var(--navy);border-radius:8px;padding:20px 28px;display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:20px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;color:var(--gold);line-height:1">$[XX] BILLION</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.75);max-width:240px;line-height:1.5">Total financial hit to New York State<br>[REPLACE WITH CURRENT FIGURE]</div>
+    </div>
+
+    <!-- 2-col breakdown -->
+    <div class="impact-grid" style="border-radius:8px;overflow:hidden;margin-bottom:20px">
+      <div class="impact-cell">
+        <div class="impact-num">$[X]B</div>
+        <div class="impact-label">[REPLACE — Cuts to hospitals &amp; healthcare facilities]</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">$[X]B</div>
+        <div class="impact-label">[REPLACE — Increase to State Budget deficit]</div>
+      </div>
+    </div>
+
+    <!-- 4-col smaller stats -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+      <div class="stat-card" style="padding:16px 12px">
+        <div class="stat-num" style="font-size:24px">[X,000]</div>
+        <div class="stat-label">[REPLACE — Hospital jobs at risk statewide]</div>
+      </div>
+      <div class="stat-card" style="padding:16px 12px">
+        <div class="stat-num" style="font-size:24px">[XX]+</div>
+        <div class="stat-label">[REPLACE — Hospitals at risk of closure]</div>
+      </div>
+      <div class="stat-card" style="padding:16px 12px">
+        <div class="stat-num" style="font-size:24px">[X.X]M</div>
+        <div class="stat-label">[REPLACE — New Yorkers who will lose healthcare]</div>
+      </div>
+      <div class="stat-card" style="padding:16px 12px">
+        <div class="stat-num" style="font-size:24px">[XXX]K</div>
+        <div class="stat-label">[REPLACE — New Yorkers losing SNAP benefits]</div>
+      </div>
+    </div>
+
+    <!-- Bottom banner -->
+    <div style="background:var(--navy);border-radius:8px;padding:16px 28px;display:flex;align-items:center;justify-content:center;gap:24px">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;color:var(--gold-light);line-height:1">+$[X.X] TRILLION</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.7)">Added to the National Debt</div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">24</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 25 — HOW CSEA FOUGHT BACK
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 25 — How CSEA Fought Back</strong></div>
+<div class="page" id="fought-back">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div>
+        <div class="section-label">Federal Issues</div>
+        <div class="h-section">How CSEA Fought Back</div>
+      </div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start">
+      <div>
+        <div class="fought-back-item">
+          <div class="check-icon"></div>
+          <div class="fb-text">More than <strong>[X,000] POSTCARDS</strong> sent to out-of-state CSEA retirees [REPLACE WITH CURRENT NUMBER]</div>
+        </div>
+        <div class="fought-back-item">
+          <div class="check-icon"></div>
+          <div class="fb-text">More than <strong>[XXX] LETTERS</strong> sent from CSEA members to Congressional representatives [REPLACE]</div>
+        </div>
+        <div class="fought-back-item">
+          <div class="check-icon"></div>
+          <div class="fb-text"><strong>THOUSANDS OF CALLS</strong> from CSEA members to Congressional representatives [REPLACE]</div>
+        </div>
+        <div class="fought-back-item">
+          <div class="check-icon"></div>
+          <div class="fb-text">More than <strong>[XXX] CSEA MEMBERS</strong> volunteering as federal advocates [REPLACE]</div>
+        </div>
+        <div class="fought-back-item">
+          <div class="check-icon"></div>
+          <div class="fb-text"><strong>RALLIES AND VISIBILITY</strong> in front of Congressional district offices [REPLACE — add specifics]</div>
+        </div>
+        <div class="fought-back-item">
+          <div class="check-icon"></div>
+          <div class="fb-text">The appointment of <strong>[XX] POLITICAL ACTION LIAISONS</strong> who organized members against these cuts [REPLACE]</div>
+        </div>
+      </div>
+      <div class="img-placeholder" style="width:200px;height:260px;border-radius:6px;flex-shrink:0">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        ACTION PHOTO<br>Rally or Advocacy<br>Event
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">25</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 26 — HOW TO GET INVOLVED
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 26 — How Can You Help?</strong></div>
+<div class="page" id="get-involved">
+  <div class="content-page" style="padding-bottom:52px">
+    <div class="page-header">
+      <div>
+        <div class="section-label">Take Action</div>
+        <div class="h-section">How Can You Help?</div>
+      </div>
+      <div class="csea-logo">CSEA <span>NEW YORK</span></div>
+    </div>
+
+    <div class="involve-card">
+      <h3>Become a CSEA Federal Advocate</h3>
+      <p>[REPLACE — Description of the Federal Advocate program: what members do as advocates, the impact they've had, and how to sign up. 3-4 sentences.]</p>
+      <p style="margin-top:8px">Join the more than [XXX] CSEA members who are committed to raising their voices, organizing, and making change at the federal level.</p>
+      <span class="involve-cta">Sign Up at cseany.org/advocate</span>
+    </div>
+
+    <div class="involve-card">
+      <h3>Join the PEOPLE Program</h3>
+      <p>PEOPLE is a voluntary CSEA and AFSCME program where participating members contribute funds used to advance CSEA's agenda at the local, state, and federal levels — including education programs, lobbying efforts, and supporting candidates for office.</p>
+      <div style="display:flex;align-items:center;gap:20px;margin-top:12px">
+        <div>
+          <p>[REPLACE — For as little as [X cents] per day, you can help protect collective bargaining rights, healthcare and retirement benefits, workplace safety, and more.]</p>
+          <span class="involve-cta" style="display:inline-block;margin-top:12px">Visit cseany.org/people</span>
+        </div>
+        <div class="qr-placeholder">QR<br>CODE<br>HERE</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;padding:20px 24px;background:var(--off-white);border-radius:6px;border-left:4px solid var(--navy)">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--navy);text-transform:uppercase;margin-bottom:6px">Sign Up for "This Week in Albany"</div>
+      <p style="font-size:13px;color:var(--text-body);line-height:1.6">Receive regular updates from the Legislative and Political Action Department. [REPLACE — Add sign-up URL or QR code.]</p>
+    </div>
+  </div>
+  <div class="page-footer"><div class="pg-num">26</div><div></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     BACK COVER
+═══════════════════════════════════════ -->
+<div class="canva-guide"><strong>Page 27 — Back Cover</strong></div>
+<div class="page" id="back-cover">
+  <div style="width:100%;height:6px;background:var(--gold)"></div>
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:1010px;text-align:center;padding:80px 48px">
+    <div class="back-cover-logo">CS<span>EA</span></div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:5px;color:rgba(255,255,255,.5);margin-top:8px;text-transform:uppercase">New York</div>
+    <div class="back-divider"></div>
+    <div class="back-tagline">"[REPLACE — Closing inspirational quote from the President or CSEA's mission statement — something that leaves readers energized.]"</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:3px;color:rgba(255,255,255,.4);margin-bottom:28px;text-transform:uppercase">— [PRESIDENT NAME], CSEA President</div>
+    <div class="back-divider"></div>
+    <div class="back-url">cseany.org</div>
+    <div class="back-social">
+      <span>Facebook</span>
+      <span>·</span>
+      <span>Twitter/X</span>
+      <span>·</span>
+      <span>Instagram</span>
+    </div>
+    <div style="margin-top:48px;font-family:'Barlow',sans-serif;font-size:11px;color:rgba(255,255,255,.25);max-width:400px;line-height:1.6">
+      Civil Service Employees Association, Inc. (CSEA) · AFSCME Local 1000 · AFL-CIO<br>
+      143 Washington Avenue · Albany, NY 12210
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CANVA IMPORT INSTRUCTIONS PAGE
+═══════════════════════════════════════ -->
+<div class="canva-guide" style="border-radius:0 0 4px 4px;margin-bottom:40px"><strong>End of template — See instruction page below</strong></div>
+<div class="page" style="background:var(--off-white)">
+  <div style="padding:56px 64px">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Canva Import &amp; Editing Guide</div>
+    <div style="width:48px;height:3px;background:var(--gold);margin-bottom:28px"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--navy);text-transform:uppercase;margin-bottom:10px">How to Use This Template in Canva</div>
+        <ol style="padding-left:20px;font-size:13px;line-height:1.8;color:var(--text-body)">
+          <li>Open Canva → <strong>Create a design</strong> → Select <strong>US Letter (8.5 × 11 in)</strong></li>
+          <li>Use this HTML file as your <strong>visual layout brief</strong> — refer to it in a second browser window as you build</li>
+          <li>For each page, add a new Canva slide/page matching the layout shown</li>
+          <li>Replace all <strong>[REPLACE …]</strong> placeholders with actual 2026 content</li>
+          <li>Swap all grey image boxes with real photos (Capitol, members, rallies, etc.)</li>
+          <li>Update all <strong>[XXXX]</strong> bill numbers, stat figures, and names</li>
+          <li>To print directly from this HTML: use browser Print → Save as PDF (set paper to US Letter, no margins)</li>
+        </ol>
+      </div>
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--navy);text-transform:uppercase;margin-bottom:10px">Design System</div>
+        <div style="font-size:12px;line-height:2;color:var(--text-body)">
+          <div><strong>Navy:</strong> #0D1F3C (primary background, headers)</div>
+          <div><strong>Gold:</strong> #C8963E (accents, stats, callouts)</div>
+          <div><strong>Red:</strong> #B92B27 (Federal Issues section)</div>
+          <div><strong>Green:</strong> #2A7A4B (bills supported, checkmarks)</div>
+          <div><strong>Off-white:</strong> #F5F3EE (content page background tints)</div>
+          <div style="margin-top:10px"><strong>Display font:</strong> Playfair Display (covers, titles)</div>
+          <div><strong>Headline font:</strong> Barlow Condensed (section heads, stats)</div>
+          <div><strong>Body font:</strong> Barlow (body copy, bullets)</div>
+        </div>
+        <div style="margin-top:16px;padding:14px 16px;background:var(--navy);border-radius:6px;font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">
+          <strong style="color:var(--gold)">Tip:</strong> All three fonts are free on Google Fonts. Search "Playfair Display", "Barlow Condensed", and "Barlow" in Canva's font browser.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;padding:20px 24px;background:white;border-radius:6px;border:2px solid var(--light-gray)">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--navy);text-transform:uppercase;margin-bottom:8px">Page Count Guide</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;font-size:12px">
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 1</strong><br>Cover</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 2</strong><br>Table of Contents</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 3</strong><br>President's Message</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 4</strong><br>Budget Opener</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pgs 5–9</strong><br>Budget Sections</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 10</strong><br>Legislature Opener</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pgs 11–20</strong><br>Bills Supported</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 21</strong><br>Bills Opposed</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 22</strong><br>Federal Opener</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pgs 23–25</strong><br>Federal Detail</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 26</strong><br>Get Involved</div>
+        <div style="padding:8px 10px;background:var(--off-white);border-radius:4px"><strong>Pg 27</strong><br>Back Cover</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
